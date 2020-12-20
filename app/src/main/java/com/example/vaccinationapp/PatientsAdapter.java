@@ -2,10 +2,12 @@ package com.example.vaccinationapp;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vaccinationapp.data.PatientsContract;
@@ -19,36 +21,42 @@ public class PatientsAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
+        Log.d("Adapter","new View called");
         return LayoutInflater.from(context).inflate(R.layout.patient_list_item,parent,false);
     }
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        int ind_id = cursor.getColumnIndex(PatientsContract.PatientEntry._ID);
+        Log.d("Adapter","bind View called");
+//        int ind_id = cursor.getColumnIndex(PatientsContract.PatientEntry._ID);
         int ind_name = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_NAME);
         int ind_sysId = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_SYSTEM_ID);
-        int ind_pwd = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_PWD);
-        int int_age = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_DATE);
+        int ind_gender = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_GENDER);
 
-        TextView tv = (TextView) view.findViewById(R.id.list_item_patient_display);
+        ImageView img = (ImageView) view.findViewById(R.id.image_person);
 
-        StringBuilder stringBuilder = new StringBuilder();
+        img.setImageResource(R.drawable.ic_baseline_account_box_24);
 
-        stringBuilder.append(""+cursor.getInt(ind_id)+"-");
-        stringBuilder.append(cursor.getString(ind_name)+"-");
-        stringBuilder.append(cursor.getString(ind_sysId));
+        TextView tvName = (TextView) view.findViewById(R.id.list_item_patient_name_display);
+        TextView tvSysId = (TextView) view.findViewById(R.id.list_item_patient_sysid_display);
+        TextView tvGender = (TextView) view.findViewById(R.id.list_item_patient_gender_display);
 
-        switch (cursor.getInt(ind_pwd)){
-            case PatientsContract.PatientEntry.PWD_TRUE:
-                stringBuilder.append(" true -");
+        tvName.setText(cursor.getString(ind_name));
+        tvSysId.setText(cursor.getString(ind_sysId));
+
+
+
+        switch (cursor.getInt(ind_gender)){
+            case PatientsContract.PatientEntry.GENDER_MALE:
+                tvGender.setText("MALE");
                 break;
-            case PatientsContract.PatientEntry.PWD_FALSE:
-                stringBuilder.append(" false -");
+            case PatientsContract.PatientEntry.GENDER_FEMALE:
+                tvGender.setText("FEMALE");
+                break;
+            case PatientsContract.PatientEntry.GENDER_OTHER:
+                tvGender.setText("OTHER");
         }
 
-        stringBuilder.append(""+cursor.getInt(int_age));
-
-        tv.setText(stringBuilder.toString());
 
     }
 }

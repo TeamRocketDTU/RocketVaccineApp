@@ -1,5 +1,6 @@
 package com.example.vaccinationapp.data;
 
+import android.content.ContentUris;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
@@ -39,6 +40,11 @@ public class PatientsContract {
 
         public static final int PWD_TRUE = 1;
         public static final int PWD_FALSE = 0;
+
+        public static Uri getUriWithAppendedId(long id) {
+            Uri uriWithId = ContentUris.withAppendedId(CONTENT_URI,id);
+            return uriWithId;
+        }
 
 
     }

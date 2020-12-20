@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ProgressBar
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:visibility="invisible"
+        android:id="@+id/display_patients_progressBar"
+        android:layout_gravity="center"/>
+<LinearLayout
+    android:id="@+id/display_patients_linearLayout"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DisplayPatientsActivity"
+    android:padding="16dp">
+
+    <ImageView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07999998"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="32dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Title"
+        android:id="@+id/nametTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Name"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"/>
+
+        <TextView
+            android:id="@+id/sysIdTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="System ID"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
+
+            />
+
+        <TextView
+
+            android:id="@+id/pwdTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PWD"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
+            />
+
+        <TextView
+            android:id="@+id/ageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="age"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp" />
+
+        <TextView
+            android:id="@+id/genderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
+
+            />
+
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
+
+            />
+
+        <TextView
+
+            android:id="@+id/timeSlotTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time Slot"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
+            />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="32dp">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:onClick="patientAbsent"
+            android:text="Patient\nAbsent" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:onClick="patientPresent"
+            android:text="Patient\nPresent" />
+    </LinearLayout>
+
+
+</LinearLayout>
+</FrameLayout>

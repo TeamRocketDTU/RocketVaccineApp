@@ -3,6 +3,8 @@ package com.example.vaccinationapp.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import com.example.vaccinationapp.data.PatientsContract.PatientEntry;
 
 public class PatientsDbHelper extends SQLiteOpenHelper {
@@ -28,10 +30,13 @@ public class PatientsDbHelper extends SQLiteOpenHelper {
 
     public PatientsDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        Log.d("DB Helper","Helper created");
+
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db)
+    {Log.d("DB Helper","Database created");
         db.execSQL(SQL_CREATE_PATIENTS_TABLE);
     }
 

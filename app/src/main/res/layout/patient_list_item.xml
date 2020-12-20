@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:textSize="20sp"
-    android:gravity="center"
-    android:id="@+id/list_item_patient_display">
-</TextView>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:padding="16dp"  >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:id="@+id/image_person"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical">
+        <TextView
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:id="@+id/list_item_patient_name_display">
+        </TextView>
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/list_item_patient_sysid_display">
+        </TextView>
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/list_item_patient_gender_display">
+        </TextView>
+
+    </LinearLayout>
+</LinearLayout>
