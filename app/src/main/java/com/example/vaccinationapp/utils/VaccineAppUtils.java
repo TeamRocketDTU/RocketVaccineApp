@@ -69,6 +69,8 @@ public class VaccineAppUtils {
                 vales.put(PatientsContract.PatientEntry.COLUMN_STOP_TIME, patientObj.getJSONArray("time slot").getLong(1));
                 vales.put(PatientsContract.PatientEntry.COLUMN_DATE, date);
 
+                vales.put(PatientsContract.PatientEntry.COLUMN_CURRENT_STATE, PatientsContract.PatientEntry.CURRENT_STATE_PENDING);
+
                 context.getContentResolver().insert(PatientsContract.PatientEntry.CONTENT_URI, vales);
             }
                 return 0;

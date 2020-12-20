@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -64,14 +65,15 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences pref = this.getSharedPreferences("com.example.vaccinationapp", Context.MODE_PRIVATE);
         if (pref.contains(CURRENT_CENTRE_ID)) {
             if (pref.getString(CURRENT_CENTRE_ID, "").equals(id)) {
+                Log.d("MainActivity", "New data not downloaded");
                 startDisplayPatients();
             } else {
-                pref.edit().putString(CURRENT_CENTRE_ID,id);
+                pref.edit().putString(CURRENT_CENTRE_ID,id).apply();
                 FetchDataTask task = new FetchDataTask();
                 task.execute(VaccineAppUtils.TEST_JSON);
             }
         } else {
-            pref.edit().putString(CURRENT_CENTRE_ID,id);
+            pref.edit().putString(CURRENT_CENTRE_ID,id).apply();
             FetchDataTask task = new FetchDataTask();
             task.execute(VaccineAppUtils.TEST_JSON);
         }
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
+            Log.d("MainActiviy","New Data Downloaded");
             progressBar.setVisibility(View.VISIBLE);
         }
 

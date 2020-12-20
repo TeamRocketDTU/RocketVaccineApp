@@ -5,12 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.vaccinationapp.data.PatientsContract.PatientEntry;
-
 public class PatientsDbHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "patients.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 4;
 
     public static final String SQL_CREATE_PATIENTS_TABLE =
             "CREATE TABLE "+ PatientsContract.PatientEntry.TABLE_NAME + "("
@@ -23,9 +21,10 @@ public class PatientsDbHelper extends SQLiteOpenHelper {
                     + PatientsContract.PatientEntry.COLUMN_START_TIME + " INTEGER, "
                     + PatientsContract.PatientEntry.COLUMN_STOP_TIME + " INTEGER, "
                     + PatientsContract.PatientEntry.COLUMN_DATE + " INTEGER, "
+                    + PatientsContract.PatientEntry.COLUMN_CURRENT_STATE + " INTEGER, "
                     + "UNIQUE (" + PatientsContract.PatientEntry.COLUMN_SYSTEM_ID + ") ON CONFLICT REPLACE);";
 
-    public static final String SQL_DELETE_PATIENTS_TABLE = "DROP TABLE IF EXISTS " + PatientEntry.TABLE_NAME;
+    public static final String SQL_DELETE_PATIENTS_TABLE = "DROP TABLE IF EXISTS " + PatientsContract.PatientEntry.TABLE_NAME;
 
 
     public PatientsDbHelper(Context context) {
@@ -36,7 +35,7 @@ public class PatientsDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db)
-    {Log.d("DB Helper","Database created");
+    {Log.d("DB Helper",SQL_CREATE_PATIENTS_TABLE);
         db.execSQL(SQL_CREATE_PATIENTS_TABLE);
     }
 

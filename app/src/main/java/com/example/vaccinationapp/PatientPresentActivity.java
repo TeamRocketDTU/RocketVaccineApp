@@ -1,7 +1,9 @@
 package com.example.vaccinationapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,17 +15,24 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.vaccinationapp.data.PatientsContract;
 import com.example.vaccinationapp.utils.VaccineAppUtils;
 
 public class PatientPresentActivity extends AppCompatActivity {
     EditText edtTxt ;
     Button finBtn;
 
+    Uri currentPatient;
+    String sysId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_present);
         getSupportActionBar().setTitle("Administer the Vaccine");
+
+        currentPatient = getIntent().getData();
+        sysId = getIntent().getStringExtra(Intent.EXTRA_TEXT);
         edtTxt = (EditText) findViewById(R.id.lotNoEditText);
         finBtn = (Button) findViewById(R.id.finBtn);
     }
@@ -62,6 +71,10 @@ public class PatientPresentActivity extends AppCompatActivity {
 
         @Override
         protected Integer doInBackground(String... strings) {
+            ContentValues values = new ContentValues();
+            values.put(PatientsContract.PatientEntry.COLUMN_CURRENT_STATE, PatientsContract.PatientEntry.CURRENT_STATE_DONE);
+
+            getContentResolver().update(currentPatient,values,null);
             String res = VaccineAppUtils.getResponseFromServer();
             Log.d("Response", res);
             return 1;

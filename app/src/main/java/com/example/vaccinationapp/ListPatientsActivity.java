@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +32,7 @@ public class ListPatientsActivity extends AppCompatActivity implements LoaderMan
             PatientsContract.PatientEntry.COLUMN_GENDER,
             PatientsContract.PatientEntry.COLUMN_START_TIME,
             PatientsContract.PatientEntry.COLUMN_STOP_TIME,
+            PatientsContract.PatientEntry.COLUMN_CURRENT_STATE,
             PatientsContract.PatientEntry.COLUMN_DATE
     };
 
@@ -53,7 +53,6 @@ public class ListPatientsActivity extends AppCompatActivity implements LoaderMan
         adapter = new PatientsAdapter(this, null);
 
         listView.setAdapter(adapter);
-        Intent intent = getIntent();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -67,12 +66,6 @@ public class ListPatientsActivity extends AppCompatActivity implements LoaderMan
 
             }
         });
-
-
-        if (intent != null)
-            if (intent.hasExtra(Intent.EXTRA_TEXT))
-                Toast.makeText(this, intent.getStringExtra(Intent.EXTRA_TEXT), Toast.LENGTH_SHORT).show();
-
 
         getLoaderManager().initLoader(LOADER_ID, null, this);
 

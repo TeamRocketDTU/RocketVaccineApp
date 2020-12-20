@@ -33,6 +33,7 @@ public class PatientsContract {
         public static final String COLUMN_START_TIME = "start_time";
         public static final String COLUMN_STOP_TIME = "stop_time";
         public static final String COLUMN_DATE = "date";
+        public static final String COLUMN_CURRENT_STATE ="current_state";
 
         public static final int GENDER_MALE = 0;
         public static final int GENDER_FEMALE = 1;
@@ -40,6 +41,10 @@ public class PatientsContract {
 
         public static final int PWD_TRUE = 1;
         public static final int PWD_FALSE = 0;
+
+        public static final int CURRENT_STATE_PENDING = 0;
+        public static final int CURRENT_STATE_DONE = 1;
+        public static final int CURRENT_STATE_CANCELLED = 2;
 
         public static Uri getUriWithAppendedId(long id) {
             Uri uriWithId = ContentUris.withAppendedId(CONTENT_URI,id);

@@ -8,7 +8,8 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
         android:id="@+id/image_person"
         />
     <LinearLayout
@@ -20,21 +21,24 @@
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:text="Name"
             android:gravity="center"
             android:id="@+id/list_item_patient_name_display">
         </TextView>
 
         <TextView
-            style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@android:color/tertiary_text_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:id="@+id/list_item_patient_sysid_display">
         </TextView>
 
+
         <TextView
-            style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@android:color/tertiary_text_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -42,4 +46,16 @@
         </TextView>
 
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stateIndicatorImageView"
+        android:layout_gravity="center_vertical|end"
+        android:layout_marginRight="12dp"
+            />
+    </FrameLayout>
 </LinearLayout>

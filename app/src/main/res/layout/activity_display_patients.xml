@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="match_parent"
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -12,18 +14,16 @@
 <LinearLayout
     android:id="@+id/display_patients_linearLayout"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DisplayPatientsActivity"
     android:padding="16dp">
 
     <ImageView
-        android:layout_gravity="center_horizontal"
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,16 +50,16 @@
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"/>
 
-        <TextView
-            android:id="@+id/sysIdTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="System ID"
-            android:layout_marginStart="48dp"
-            android:layout_marginLeft="48dp"
+            <TextView
+                android:id="@+id/sysIdTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="24dp"
+                android:text="System ID"
 
-            />
+                />
 
         <TextView
 
@@ -124,7 +124,7 @@
         android:layout_margin="32dp">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/absentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -133,7 +133,7 @@
             android:text="Patient\nAbsent" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/presentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

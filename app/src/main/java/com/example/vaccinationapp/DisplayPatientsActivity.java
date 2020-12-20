@@ -1,5 +1,6 @@
 package com.example.vaccinationapp;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -7,6 +8,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -26,21 +28,30 @@ public class DisplayPatientsActivity extends AppCompatActivity {
     LinearLayout linearLayout ;
     ProgressBar progressBar;
 
+    Button presentBtn;
+    Button absentBtn;
+
+    String sysID;
+    Uri currentPatient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_patients);
+
+        currentPatient = getIntent().getData();
 
         getSupportActionBar().setTitle("Patient's Details");
 
         linearLayout = (LinearLayout) findViewById(R.id.display_patients_linearLayout);
         progressBar = (ProgressBar) findViewById(R.id.display_patients_progressBar);
 
-        Intent intent = getIntent();
+        presentBtn = (Button) findViewById(R.id.presentButton);
+        absentBtn = (Button) findViewById(R.id.absentButton);
 
-        Uri uri = intent.getData();
+
          FetchPatientDetailsTask task =new FetchPatientDetailsTask();
-         task.execute(uri);
+         task.execute(currentPatient);
 
 
     }
@@ -65,6 +76,9 @@ public class DisplayPatientsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(getApplicationContext(),"Cancel",Toast.LENGTH_SHORT).show();
+                        ContentValues values = new ContentValues();
+                        values.put(PatientsContract.PatientEntry.COLUMN_CURRENT_STATE, PatientsContract.PatientEntry.CURRENT_STATE_CANCELLED);
+                        getContentResolver().update(currentPatient,values, null);
                         Intent intent = new Intent(getApplicationContext(), ListPatientsActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         startActivity(intent);
@@ -72,13 +86,16 @@ public class DisplayPatientsActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
+
+
+
+
     }
     
     public void patientPresent(View view){
         Intent intent = new Intent(this,PatientPresentActivity.class);
-        TextView tvSysId = (TextView) findViewById(R.id.sysIdTextView);
-        intent.putExtra(Intent.EXTRA_TEXT, tvSysId.getText().toString());
-
+        intent.setData(currentPatient);
+        intent.putExtra(Intent.EXTRA_TEXT, sysID);
         startActivity(intent);
     }
 
@@ -110,6 +127,7 @@ public class DisplayPatientsActivity extends AppCompatActivity {
             int ind_date = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_DATE);
             int ind_startTime = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_START_TIME);
             int ind_stopTime = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_STOP_TIME);
+            int ind_currentState = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_CURRENT_STATE);
 
             SimpleDateFormat dateFormat1 = new SimpleDateFormat("HH:mm");
             SimpleDateFormat dateFormat2 = new SimpleDateFormat("E, dd MMM yyyy");
@@ -127,7 +145,8 @@ public class DisplayPatientsActivity extends AppCompatActivity {
             TextView tvSlot = (TextView) findViewById(R.id.timeSlotTextView);
 
             tvName.setText("Name: "+cursor.getString(ind_name));
-            tvSysId.setText("System ID: "+cursor.getString(ind_sysId));
+            sysID= cursor.getString(ind_sysId);
+            tvSysId.setText("System ID: "+sysID);
 
             switch (cursor.getInt(ind_pwd)){
                 case PatientsContract.PatientEntry.PWD_TRUE:
@@ -157,6 +176,12 @@ public class DisplayPatientsActivity extends AppCompatActivity {
             Date stopTimeDate = new Date(cursor.getLong(ind_stopTime));
 
             tvSlot.setText("Slot: "+ dateFormat1.format(startTimeDate)+" - "+dateFormat1.format(stopTimeDate));
+
+            if(cursor.getInt(ind_currentState)== PatientsContract.PatientEntry.CURRENT_STATE_CANCELLED||cursor.getInt(ind_currentState)== PatientsContract.PatientEntry.CURRENT_STATE_DONE)
+            {
+                presentBtn.setEnabled(false);
+                absentBtn.setEnabled(false);
+            }
             showLinearLayout();
         }
     }

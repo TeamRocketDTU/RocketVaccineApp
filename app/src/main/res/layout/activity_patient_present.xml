@@ -18,6 +18,7 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:breakStrategy="simple"
@@ -25,6 +26,7 @@
                 android:text="STEP 1: Examine the message received by the user at the time of registration, and confirm the System assigned ID." />
 
             <TextView
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:breakStrategy="simple"
@@ -37,6 +39,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    style="@style/TextAppearance.AppCompat.Body1"
                     android:id="@+id/textView2"
                     android:layout_width="214dp"
                     android:layout_height="wrap_content"
@@ -68,6 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
+                android:padding="12dp"
                 android:ems="10"
                 android:hint="Enter Lot ID here"
                 android:inputType="textPersonName" />
@@ -77,7 +81,7 @@
 <!--                android:layout_height="wrap_content">-->
 
                 <TextView
-
+                    style="@style/TextAppearance.AppCompat.Body1"
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -104,6 +108,7 @@
 <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
             <TextView
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:breakStrategy="simple"

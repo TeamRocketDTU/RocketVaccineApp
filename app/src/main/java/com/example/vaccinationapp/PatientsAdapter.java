@@ -28,12 +28,15 @@ public class PatientsAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         Log.d("Adapter","bind View called");
-//        int ind_id = cursor.getColumnIndex(PatientsContract.PatientEntry._ID);
+
         int ind_name = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_NAME);
         int ind_sysId = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_SYSTEM_ID);
         int ind_gender = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_GENDER);
+        int ind_currentState = cursor.getColumnIndex(PatientsContract.PatientEntry.COLUMN_CURRENT_STATE);
 
         ImageView img = (ImageView) view.findViewById(R.id.image_person);
+
+        ImageView imgState = (ImageView) view.findViewById(R.id.stateIndicatorImageView);
 
         img.setImageResource(R.drawable.ic_baseline_account_box_24);
 
@@ -43,8 +46,6 @@ public class PatientsAdapter extends CursorAdapter {
 
         tvName.setText(cursor.getString(ind_name));
         tvSysId.setText(cursor.getString(ind_sysId));
-
-
 
         switch (cursor.getInt(ind_gender)){
             case PatientsContract.PatientEntry.GENDER_MALE:
@@ -57,7 +58,17 @@ public class PatientsAdapter extends CursorAdapter {
                 tvGender.setText("OTHER");
         }
 
-
+        switch (cursor.getInt(ind_currentState)){
+            case PatientsContract.PatientEntry.CURRENT_STATE_DONE:
+                imgState.setImageResource(R.drawable.ic_baseline_done_24);
+                break;
+            case PatientsContract.PatientEntry.CURRENT_STATE_CANCELLED:
+                imgState.setImageResource(R.drawable.ic_baseline_cancel_24);
+                break;
+            case PatientsContract.PatientEntry.CURRENT_STATE_PENDING:
+                imgState.setImageResource(R.drawable.ic_baseline_pending_24);
+                break;
+        }
     }
 }
 /*     D/SQL COMMAND: CREATE TABLE patients(
