@@ -11,13 +11,16 @@ The app fetches data from server about the scheduled vaccinations. The front-end
 <hr>
 
 The list of patients scheduled for the day is visible on the screen along with their current status of vaccination.
+<p><img src = 'assets/UpdatedListOfPatients.jpg' height = '400px'>
+</p>
 
-<img src = 'assets/UpdatedListOfPatients.jpg' height = '400px'>
 <hr>
-They can see the full details of a patient and cancel the appointment if the patient doesn't appear for the day.
+They can see the full details of a patient and cancel the appointment if the patient doesn't appear for the day.  
 
-<img src = 'assets/PatientDetail.jpg' height = '400px'>
-<img src = 'assets/PatientAbsent.jpg' height = '400px'>
+
+<p><img src = 'assets/PatientDetail.jpg' height = '400px'>
+<img src = 'assets/PatientAbsent.jpg' height = '400px'></p>
+
 <hr>
 
 If the patient has been vaccinated, they can enter the lot number and enter the person who has been vaccinated.
